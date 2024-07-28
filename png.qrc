@@ -1,0 +1,28 @@
+<RCC>
+    <qresource prefix="/mapseg">
+        <file>png/mapseg/boss.png</file>
+        <file>png/mapseg/grass.png</file>
+        <file>png/mapseg/sand.png</file>
+        <file>png/mapseg/steel.png</file>
+        <file>png/mapseg/wall.png</file>
+        <file>png/mapseg/water.png</file>
+    </qresource>
+    <qresource prefix="/tank">
+        <file>png/tank/enemy1D.png</file>
+        <file>png/tank/enemy1L.png</file>
+        <file>png/tank/enemy1R.png</file>
+        <file>png/tank/enemy1U.png</file>
+        <file>png/tank/enemy2D.png</file>
+        <file>png/tank/enemy2L.png</file>
+        <file>png/tank/enemy2R.png</file>
+        <file>png/tank/enemy2U.png</file>
+        <file>png/tank/enemy3D.png</file>
+        <file>png/tank/enemy3L.png</file>
+        <file>png/tank/enemy3R.png</file>
+        <file>png/tank/enemy3U.png</file>
+        <file>png/tank/p1tankD.png</file>
+        <file>png/tank/p1tankL.png</file>
+        <file>png/tank/p1tankR.png</file>
+        <file>png/tank/p1tankU.png</file>
+    </qresource>
+</RCC>

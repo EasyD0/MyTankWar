@@ -1,0 +1,16 @@
+{
+	"cmake.configureEnvironment": {
+		"CC": "D:\\Qt\\Tools\\llvm-mingw1706_64\\bin\\clang.exe",
+		"CXX": "D:\\Qt\\Tools\\llvm-mingw1706_64\\bin\\clang++.exe",
+		//"PATH": "D:\\Qt\\Tools\\llvm-mingw1706_64\\bin;D:\\Qt\\Tools\\CMake_64\\bin;D:\\Qt\\Tools\\Ninja;D:\\Qt\\Tools\\QtCreator\\bin;D:\\Qt\\Tools\\QtCreator\\lib;D:\\Qt\\Tools\\QtCreator\\lib\\qtcreator\\bin;D:\\Qt\\Tools\\QtCreator\\lib\\qtcreator\\plugins;D:\\Qt\\Tools\\QtCreator\\lib\\qtcreator\\plugins\\QtProject;D:\\Qt\\Tools\\QtCreator\\lib\\qtcreator\\plugins\\QtProject\\cmake;D:\\Qt\\Tools\\QtCreator\\lib\\qtcreator\\plugins\\QtProject\\cmake\\server;D:\\Qt\\Tools\\QtCreator\\lib\\qtcreator\\plugins\\QtProject\\cmake\\server\\backend;D:\\Qt\\Tools\\QtCreator\\lib\\qtcreator\\plugins\\QtProject\\cmake\\server\\backend\\clang;D:\\Qt\\Tools\\QtCreator\\lib\\qtcreator\\plugins\\QtProject\\cmake\\server\\backend\\clang\\bin;D:\\Qt\\Tools\\QtCreator\\lib\\qtcreator\\plugins\\QtProject\\cmake\\server\\backend\\clang\\lib;D:\\Qt\\Tools\\QtCreator\\lib\\qtcreator\\plugins\\QtProject\\cmake\\server\\backend\\clang\\lib\\clang\\10.0.0\\include;D:\\Qt\\Tools\\QtCreator\\lib\\qtcreator\\plugins\\QtProject\\cmake\\server\\backend\\clang\\lib\\clang\\10.0.0\\lib\\windows;D:\\Qt\\Tools\\QtCreator\\lib\\qtcreator\\plugins\\QtProject\\cmake\\server\\backend\\clang\\lib\\clang\\10.0.0\\lib\\windows\\clang\\10.0.0\\include;D:\\Qt\\Tools\\QtCreator\\lib\\qtcreator\\plugins\\QtProject\\cmake\\server\\backend\\clang\\lib\\clang\\10.0.0\\lib\\windows\\clang\\10.0.0\\include\\c++\\v1;D:\\Qt\\Tools\\QtCreator\\lib\\qtcreator\\plugins\\QtProject\\cmake\\server\\backend\\clang\\lib"
+	},
+
+	"clangd.fallbackFlags": [
+		"--std=c++20",
+		"-Id:/Qt/Tools/llvm-mingw1706_64/include/",
+		"-Id:/Qt/6.7.1/llvm-mingw_64/include/",
+	],
+
+	"clangd.path": "D:\\Qt\\Tools\\llvm-mingw1706_64\\bin\\clangd.exe",
+	"cmake.cmakePath": "D:/Qt/Tools/CMake_64/bin/cmake.exe",
+}
