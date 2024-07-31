@@ -18,7 +18,7 @@ protected:
   QPoint _position{};      // 位置
   QRect _geo{};            // 几何形状
   Direction _dir = Up;     // 方位
-  bool _disappear = false; // 是否消失?
+  bool _disappear = false; // 是否消失
 
 public:
   Baseblock() = default;

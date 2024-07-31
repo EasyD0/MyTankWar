@@ -6,53 +6,59 @@
 #include "fullmap.h"
 #include <qobject.h>
 #include <qtmetamacros.h>
-#include <vector>
-
+#include "tank.h"
 
 struct check : public QObject{
   Q_OBJECT
+public: //warring 为什么这里不加public会报错, 说这些函数是私有的???
   
-  static inline bool check_collision(const QRect &newgeo, const Baseblock &b) {
-    return newgeo.intersects(b.geometry());
+  static inline bool check_collision(const QRect &_newgeo, const Baseblock &_b) {
+    return _newgeo.intersects(_b.geometry());
   }
 
-  static bool check_collision_with_map(const QRect &newgeo, Fullmap &map) {
-    auto fullmap = map.get_map();
+  static Mapseg* check_collision_with_map(const QRect &_newgeo, Fullmap &_map) {
+    auto fullmap = _map.get_map();
 
     for (int i = 0; i < Row; i++) {
       for (int j = 0; j < Col; j++) {
-        if (fullmap[i][j]->get_kind() >= 3) {
-          if (check_collision(newgeo, *(fullmap[i][j]))) {
-            return true;
+        if (fullmap[i][j]&&fullmap[i][j]->get_kind() >= 3) {
+          if (check_collision(_newgeo, *(fullmap[i][j]))) {
+            return fullmap[i][j];
           }
         }
       }
     }
-    return false;
+    return nullptr;
   }
 
-  static bool check_collision_with_edge(const QRect &newgeo) {
-    if (newgeo.top() < 0 || newgeo.bottom() > Row * SegHeight ||
-        newgeo.left() < 0 || newgeo.right() > Col * SegWidth) {
+  static bool check_collision_with_edge(const QRect &_newgeo) {
+    if (_newgeo.top() < 0 || _newgeo.bottom() > Row * SegHeight ||
+        _newgeo.left() < 0 || _newgeo.right() > Col * SegWidth) {
       return true;
     }
     return false;
   }
 
-  static bool
-  check_collision_with_alltank(const QRect &newgeo,
-                               std::vector<Baseblock *> &EnemyTankList,
-                               Baseblock &player) {
-    if (check_collision(newgeo, player)) {
-      return true;
+  static Tank *check_collision_with_alltank(const QRect &_newgeo,
+                                            std::vector<Tank *> &_enemyTankList,
+                                            Tank &_player) {
+    if (check_collision(_newgeo, _player)) {
+      return &_player;
     }
 
-    for (auto &enemy : EnemyTankList) {
-      if (check_collision(newgeo, *enemy)) {
-        return true;
+    for (auto &_e : _enemyTankList) {
+      if (check_collision(_newgeo, *_e)) {
+        return _e;
       }
     }
-    return false;
+    return nullptr;
+  }
+
+  static bool checkall(const QRect &_newgeo, Fullmap &_map, Tank &_player,
+					   std::vector<Tank *> &_enemyTankList) {
+    return (check_collision_with_map(_newgeo, _map) != nullptr) ||
+           check_collision_with_edge(_newgeo) ||
+		   (check_collision_with_alltank(_newgeo, _enemyTankList, _player)!=nullptr);
   }
 };
 

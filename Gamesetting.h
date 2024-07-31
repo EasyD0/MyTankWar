@@ -13,6 +13,6 @@ const int Height = 60 * 13;
 const int MissileWidth = 17;
 const int MissileHeight = 17;
 const int MAX_game_level = 2; // 最大游戏关卡数
-
-
+const int player_x = 4;
+const int player_y = 12;
 #endif // GAMESETTING_H

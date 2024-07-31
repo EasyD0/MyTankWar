@@ -35,12 +35,13 @@ public:
 
   // 接口函数
   MapBlock get_kind() const { return _seg_kind; }
-  void modify_seg(); //todo
-  void init_seg(); //todo 根据地块类型初始化地块
+  //void modify_seg(); //todo
 
   virtual void display(QPainter &_painter) const override;
-  void update_life(); //更新生命值
+
+  //void update_life(); //更新生命值
   void update();
+  int life() const { return _life; }
 };
 
 #endif // MAPSEG_H

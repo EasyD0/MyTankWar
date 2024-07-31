@@ -55,7 +55,7 @@ bool Fullmap::load_map(unsigned _num, QPainter &_painter) {
         {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
         {0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0},
         {0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0},
-        {0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 1, 6, 1, 0, 0, 0, 0, 0},
     };
     break;
   case 2:
@@ -73,7 +73,7 @@ bool Fullmap::load_map(unsigned _num, QPainter &_painter) {
         {5, 1, 2, 1, 2, 1, 1, 1, 2, 1, 2, 1, 5}, // 10
         {5, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 5}, // 11
         {5, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 5}, // 12
-        {5, 5, 5, 0, 0, 1, 0, 1, 0, 0, 5, 5, 0}, // 13
+        {5, 5, 5, 0, 0, 1, 6, 1, 0, 0, 5, 5, 0}, // 13
     };
     break;
   default:
@@ -82,8 +82,12 @@ bool Fullmap::load_map(unsigned _num, QPainter &_painter) {
 
   for (int i = 0; i < Row; ++i)
     for (int j = 0; j < Col; ++j) {
-      _fullseg[i][j] = new Mapseg(i * SegWidth, j * SegHeight,
-                                  static_cast<MapBlock>(map[i][j]));
+      if (map[i][j] != 0) {
+        _fullseg[i][j] = new Mapseg(i * SegWidth, j * SegHeight,
+                                    static_cast<MapBlock>(map[i][j]));
+      } else {
+        _fullseg[i][j] = nullptr;  //图块为0, 则为nullptr
+	  }
     };
 
   display(_painter); // TODO

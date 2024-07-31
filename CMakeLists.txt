@@ -23,11 +23,15 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(MyTankACE
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+		Gamesetting.h
         baseblock.h baseblock.cpp
 		mapseg.h mapseg.cpp
+		fullmap.h fullmap.cpp
+		tank.h tank.cpp check_collision.h
+		missile.h missile.cpp
+		Game.h Game.cpp
         png.qrc
-        tank.h tank.cpp
-        check_collision.h
+        
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET MyTankACE APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

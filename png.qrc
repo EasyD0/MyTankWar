@@ -25,4 +25,7 @@
         <file>png/tank/p1tankR.png</file>
         <file>png/tank/p1tankU.png</file>
     </qresource>
+    <qresource prefix="/other">
+        <file>png/other/Missile.png</file>
+    </qresource>
 </RCC>
