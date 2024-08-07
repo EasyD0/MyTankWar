@@ -1,8 +1,7 @@
-#include "Game.h"
 #include "check_collision.h"
 #include "missile.h"
-
-extern Game Thegame;
+#include "Game.h"
+//extern Game Thegame;
 
 
 Missile::Missile(const Tank &tank) : Baseblock() {
@@ -32,7 +31,7 @@ void Missile::display(QPainter &_painter) const {
   _painter.drawImage(_geo, img);
 }
 
-void Missile::move() {
+void Missile::move(Game &Thegame) {
   if (_disappear)
     return;
   QRect new_geo = _geo;
@@ -53,8 +52,8 @@ void Missile::move() {
   default:
     break;
   }
-  // TODO
-  //  和边界碰撞
+
+  //  TODO和边界碰撞
   if (check::check_collision_with_edge(new_geo)) {
     _life = 0;
     _disappear = true;

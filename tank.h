@@ -5,6 +5,7 @@
 #include <qobject.h>
 #include <qpoint.h>
 
+class Game;
 class Missile;
     
 enum TankType {
@@ -35,7 +36,7 @@ public:
 
   inline void add_level() { _level++;
     (_level > 2) ? (_level = 2) : 1;
-  } // TODO 应该特化, 只定义玩家类型坦克可以升级.
+  } // TODO 应该作为模板成员, 然后特化, 只定义玩家类型坦克可以升级.
 
   inline void rotation_U() { _dir = Up; }
   inline void rotation_D() { _dir = Down; }
@@ -45,8 +46,8 @@ public:
   inline void rotation_Left() {_dir = static_cast<Direction>((_dir + 3) % 4);}
   inline void rotation_Right() { _dir = static_cast<Direction>((_dir + 1) % 4); }
 
-  QRect move();
-  Missile *fire();
+  QRect move(Game &Thegame);
+  Missile *fire(Game &Thegame);
 
   void display(QPainter &_painter) const override;
 private:

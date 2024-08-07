@@ -28,8 +28,9 @@ public:
   virtual void display(QPainter &_painter) const = 0; // 显示方块
 
   inline QPoint position() const { return _position; }
-  inline bool is_disappear() const { return _disappear; }
+  bool is_disappear() { return _disappear; }
   inline QRect geometry() const { return _geo; }
+  inline void set_dir(Direction dir){ _dir=dir; }
 
   bool isCollision(const Baseblock &other) const; // 是否碰撞
 };

@@ -6,7 +6,7 @@
 #include <QPoint>
 #include <qicon.h>
 
-extern Game Thegame;
+// extern Game Thegame;
 
 extern const int SegWidth;
 extern const int SegHeight;
@@ -65,7 +65,7 @@ void Tank::display(QPainter &_painter) const {
   if (_disappear)
     return;
 
-  std::string path = ":/png/tank/";
+  std::string path = ":/tank/png/tank/";
   if (_tank_type == Player) {
     path += "p1tank";
   } else {
@@ -94,7 +94,7 @@ void Tank::display(QPainter &_painter) const {
   _painter.drawImage(_geo, img);
 }
 
-QRect Tank::move() {
+QRect Tank::move(Game &Thegame) {
   auto tmp = _geo;
   QRect new_geo = _geo;
 
@@ -115,8 +115,10 @@ QRect Tank::move() {
     break;
   }
 
-  if (check::checkall(new_geo, Thegame.Current_map, *Thegame.PlayerTank,
-                      Thegame.CurrentEnemyList)) { // todo 检查是否碰撞
+  bool flag =
+      check::checktank_withall(new_geo, this, Thegame.Current_map,
+                               *Thegame.PlayerTank, Thegame.CurrentEnemyList);
+  if (!flag) { // 检查是否碰撞
     _geo = new_geo;
     _position = new_geo.topLeft();
   };
@@ -124,8 +126,8 @@ QRect Tank::move() {
   return tmp;
 }
 
-Missile *Tank::fire() {
+Missile *Tank::fire(Game &Thegame) {
   Missile *missile = new Missile(*this);
-  Thegame.MissileList.push_back(missile);  //开火后已经注入到导弹列表中了
+  Thegame.MissileList.push_back(missile); // 开火后已经注入到导弹列表中了
   return missile;
 }

@@ -72,31 +72,31 @@ void Mapseg::display(QPainter &_painter) const{
     return;
 	break;
   case wall:
-    img.load(":/png/mapseg/wall.png");
+    img.load(":/mapseg/png/mapseg/wall.png");
     break;
   case steel:
-    img.load(":/png/mapseg/steel.png");
-	break;
+    img.load(":/mapseg/png/mapseg/steel.png");
+    break;
   case sand:
-    img.load(":/png/mapseg/sand.png");
-	break;
+    img.load(":/mapseg/png/mapseg/sand.png");
+    break;
   case water:
-    img.load(":/png/mapseg/water.png");
-	break;
+    img.load(":/mapseg/png/mapseg/water.png");
+    break;
   case grass:
-    img.load(":/png/mapseg/grass.png");
-	break;
+    img.load(":/mapseg/png/mapseg/grass.png");
+    break;
   case boss:
-    img.load(":/png/mapseg/boss.png");
-	break;
+    img.load(":/mapseg/png/mapseg/boss.png");
+    break;
   default:
 	break;
   };
   _painter.drawImage(_geo, img);
 }
 
-void Mapseg::update() {  
-  if (_life == 0) {
+void Mapseg::update_seg() {  
+  if (_life == 0) { //error
 	_seg_kind = nothing;
 	_disappear = true;
   }

@@ -22,10 +22,10 @@ Fullmap::~Fullmap() {
   }
 }
 
-bool Fullmap::load_map(unsigned _num, QPainter &_painter) {
+bool Fullmap::load_map(int _num) {
   clear(); // 清空图层
-           //
-  // 如果超过最大关卡, 应该取模
+           
+  // 如果超过最大关卡, 应该取模 关卡循环
   if (_num == 0) {
     qWarning("错误的关卡");
     return false;
@@ -83,28 +83,41 @@ bool Fullmap::load_map(unsigned _num, QPainter &_painter) {
   for (int i = 0; i < Row; ++i)
     for (int j = 0; j < Col; ++j) {
       if (map[i][j] != 0) {
-        _fullseg[i][j] = new Mapseg(i * SegWidth, j * SegHeight,
-                                    static_cast<MapBlock>(map[i][j]));
+        _fullseg[i][j] = new Mapseg(j * SegHeight, i * SegWidth,static_cast<MapBlock>(map[i][j]));
       } else {
         _fullseg[i][j] = nullptr;  //图块为0, 则为nullptr
 	  }
     };
 
-  display(_painter); // TODO
+  //display(_painter);
   return true;
 }
 
 void Fullmap::display(QPainter &_painter) const {
-  // 地图边框
-  _painter.setBrush(Qt::black);
-  _painter.setPen(Qt::black);
-  _painter.drawRect(0, 0, Width, Height);
+  // 绘制地图边框
+  //_painter.setBrush(Qt::black);
+  //_painter.setPen(Qt::black);
+  //_painter.drawRect(0, 0, Width, Height);
 
   //地图色块
   for (int i = 0; i < Row; i++) {
     for (int j = 0; j < Col; j++) {
       if (_fullseg[i][j] != nullptr) {
         _fullseg[i][j]->display(_painter);
+      }
+    }
+  }
+}
+
+void Fullmap::update_map() {
+  for (int i = 0; i < Row; i++) {
+    for (int j = 0; j < Col; j++) {
+      if (_fullseg[i][j] != nullptr) {
+        _fullseg[i][j]->update_seg();
+        if (_fullseg[i][j]->is_disappear()) {
+          delete _fullseg[i][j];
+          _fullseg[i][j] = nullptr;
+        }
       }
     }
   }

@@ -1,5 +1,10 @@
+#ifndef MISSILE_H
+#define MISSILE_H
+
 #include "baseblock.h"
 #include "tank.h"
+
+class Game;
 
 class Missile : public Baseblock {
   
@@ -19,5 +24,7 @@ public:
 
   void display(QPainter &_painter) const override;
 
-  void move();
+  void move(Game &Thegame);
 };
+
+#endif
