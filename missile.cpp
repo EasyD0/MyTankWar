@@ -1,8 +1,8 @@
-#include "check_collision.h"
 #include "missile.h"
 #include "Game.h"
-//extern Game Thegame;
+#include "check_collision.h"
 
+// extern Game Thegame;
 
 Missile::Missile(const Tank &tank) : Baseblock() {
   _dir = tank._dir;
@@ -27,7 +27,7 @@ Missile::Missile(const Tank &tank) : Baseblock() {
 void Missile::display(QPainter &_painter) const {
   if (_disappear)
     return;
-  QImage img(":/png/other/Missile.png");
+  QImage img(":/other/png/other/Missile.png");
   _painter.drawImage(_geo, img);
 }
 
@@ -53,16 +53,31 @@ void Missile::move(Game &Thegame) {
     break;
   }
 
-  //  TODO和边界碰撞
-  if (check::check_collision_with_edge(new_geo)) {
+  if (check::check_collision_with_edge(new_geo)) { // 和边界碰撞后直接消失
     _life = 0;
     _disappear = true;
   }
 
-  // TODO 和地图块碰撞 暂时不考虑, 直接让导弹穿透
+  // TODO 需要修改
   auto *seg = check::check_collision_with_map(new_geo, Thegame.Current_map);
   if (seg) {
-    // if(seg->)
+
+    if (seg->penetration() > _level) { // 导弹等级不够,导弹消失
+      _life = 0;
+      _disappear = true;
+    }
+
+    if (seg->penetration() <= _level) {
+      _life = 0;
+      _disappear = true;
+      seg->set_life(seg->life() - 1);
+      if (seg->life() <= 0) {
+        seg->set_disappear(true);
+      }
+    }
+
+    ; // 直接穿透
+      // 其他情况直接穿透
   }
 
   // 和坦克碰撞

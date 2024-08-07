@@ -1,25 +1,27 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include <QPainter>
-#include <qcolor.h>
-#include <QKeyEvent>
-#include <QTimer>
 #include "Game.h"
+#include <QKeyEvent>
+#include <QPainter>
+#include <QTimer>
+#include <iostream>
+#include <qcolor.h>
 
-//extern Game Thegame;
+// extern Game Thegame;
 
 MainWindow::MainWindow(Game *thegame, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), Thegame(thegame) {
-  //ui->setupUi(this);
-  // setWindowIcon(QIcon(":/png/tank/p1tankU.png"));
-  setWindowTitle("Tank War"); // 设置标题
-  setGeometry(100, 100, Width*1.5, Height*1.5); // 设置位置和大小
-  setFixedSize(Width * 1.5, Height * 1.5);      // 固定大小
+  // ui->setupUi(this);
+  //  setWindowIcon(QIcon(":/png/tank/p1tankU.png"));
+  setWindowTitle("Tank War");                       // 设置标题
+  setGeometry(100, 100, Width * 1.5, Height * 1.5); // 设置位置和大小
+  setFixedSize(Width * 1.5, Height * 1.5);          // 固定大小
 
   timer = new QTimer(this);
   timer->setInterval(70); // 70ms
 
-  // timer每过Interval触发一次timeout, 然后调用update(), 从而导致paintEvent()被调用
+  // timer每过Interval触发一次timeout, 然后调用update(),
+  // 从而导致paintEvent()被调用
   connect(timer, &QTimer::timeout, this, &MainWindow::myupdate);
   timer->start();
 }
@@ -30,18 +32,19 @@ MainWindow::~MainWindow() {
   delete timer;
 }
 
-
 void MainWindow::paintEvent(QPaintEvent *event) {
-    Thegame->Gamepainter.begin(this);
+  Thegame->Gamepainter.begin(this);
 
-    //Thegame->Gamepainter.drawRect(100, 100, 200, 100);
-    //Thegame->Gamepainter.drawImage(0, 0,QImage(":/mapseg/png/mapseg/wall.png"));
-    Thegame->game_update(); // TODO
-    Thegame->Gamepainter.end();
+  // Thegame->Gamepainter.drawRect(100, 100, 200, 100);
+  // Thegame->Gamepainter.drawImage(0,
+  // 0,QImage(":/mapseg/png/mapseg/wall.png"));
+  Thegame->game_update(); // TODO
+  Thegame->Gamepainter.end();
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {
   if (event->key() == Qt::Key_W) {
+    std::cout << "W" << std::endl;
     Thegame->PlayerTank->set_dir(Up);
     Thegame->PlayerTank->move(*Thegame);
   }
@@ -60,12 +63,11 @@ void MainWindow::keyPressEvent(QKeyEvent *event) {
   }
 
   if (event->key() == Qt::Key_J) {
-    Missile *tmp = Thegame->PlayerTank->fire(*Thegame);
+    std::cout << "fire" << std::endl;
+    Missile *tmp = Thegame->PlayerTank->fire();
     if (tmp != nullptr)
       Thegame->MissileList.push_back(tmp);
   }
 }
 
-void MainWindow::myupdate(){
-    update();
-}
+void MainWindow::myupdate() { update(); }

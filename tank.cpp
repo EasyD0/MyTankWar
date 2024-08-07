@@ -126,8 +126,8 @@ QRect Tank::move(Game &Thegame) {
   return tmp;
 }
 
-Missile *Tank::fire(Game &Thegame) {
+Missile *Tank::fire() {
   Missile *missile = new Missile(*this);
-  Thegame.MissileList.push_back(missile); // 开火后已经注入到导弹列表中了
+  // Thegame.MissileList.push_back(missile); // 开火后已经注入到导弹列表中了
   return missile;
 }

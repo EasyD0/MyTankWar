@@ -12,7 +12,7 @@ class Mapseg : public Baseblock {
 private:
   MapBlock _seg_kind = nothing; // 地块类型
   int _life = 0;                // 地块生命
-  bool _penetration = 0;        // 导弹可穿透等级 0 可直接穿透,
+  unsigned _penetration = 0;    // 导弹可穿透等级 0 可直接穿透,
   bool _pass = true;            // 坦克可通行? false 不可穿透,
 
 private:
@@ -34,6 +34,7 @@ public:
   // 接口函数
   MapBlock get_kind() const { return _seg_kind; }
   bool is_pass() const { return _pass; }
+  int penetration() const { return _penetration; }
   // void modify_seg(); //todo
 
   virtual void display(QPainter &_painter) const override;
@@ -41,6 +42,9 @@ public:
   // void update_life(); //更新生命值
   void update_seg();
   int life() const { return _life; }
+  void set_life(int l) { _life = l; }
+  void set_disappear(bool a) { _disappear = a; }
+
   // using Baseblock::is_disappear;
   // bool is_disappear() const { return _disappear; }
 };
