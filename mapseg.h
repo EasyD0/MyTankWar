@@ -35,11 +35,9 @@ public:
   MapBlock get_kind() const { return _seg_kind; }
   bool is_pass() const { return _pass; }
   int penetration() const { return _penetration; }
-  // void modify_seg(); //todo
 
   virtual void display(QPainter &_painter) const override;
 
-  // void update_life(); //更新生命值
   void update_seg();
   int life() const { return _life; }
   void set_life(int l) { _life = l; }

@@ -14,8 +14,8 @@ MainWindow::MainWindow(Game *thegame, QWidget *parent)
   // ui->setupUi(this);
   //  setWindowIcon(QIcon(":/png/tank/p1tankU.png"));
   setWindowTitle("Tank War");                       // 设置标题
-  setGeometry(100, 100, Width * 1.5, Height * 1.5); // 设置位置和大小
-  setFixedSize(Width * 1.5, Height * 1.5);          // 固定大小
+  setGeometry(100, 100, Width * 1, Height * 1); // 设置位置和大小
+  setFixedSize(Width * 1, Height * 1);          // 固定大小
 
   timer = new QTimer(this);
   timer->setInterval(70); // 70ms
